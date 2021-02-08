@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -14,10 +16,12 @@ import { MenuComponent } from './menu/menu.component';
     IndexComponent,
     FooterComponent,
     MenuComponent,
+    ConnexionComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    NoopAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
