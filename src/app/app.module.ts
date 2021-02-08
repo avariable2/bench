@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './footer/footer.component';
+import { MenuComponent } from './menu/menu.component';
 
 
 @NgModule({
@@ -12,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
     AppComponent,
     IndexComponent,
     FooterComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
