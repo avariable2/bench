@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth-service';
+import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-connexion',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConnexionComponent implements OnInit {
 
-  constructor() { }
+  coForm = new FormGroup({
+      email: new FormControl(''),
+      mdp: new FormControl(''),
+  });
+  estCo: boolean;
 
-  ngOnInit(): void {
+  constructor(private auth: AuthService) {
+    this.estCo = false;
+  }
+
+  ngOnInit(): void { }
+
+  connexion() {
+    let user = this.coForm.value;
+    this.auth.connexion(user.email,user.mdp);
+    if(this.auth.estCo()){
+      this.estCo = true;
+    }
   }
 
 }
