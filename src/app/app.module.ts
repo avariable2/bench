@@ -10,15 +10,19 @@ import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './footer/footer.component';
 import { MenuComponent } from './menu/menu.component';
 import { ConnexionComponent } from './connexion/connexion.component';
+import { BlockListComponent } from './block-list/block-list.component';
+import { BlockCreerComponent } from './block-creer/block-creer.component';
 
 // Firebase services + enviorment module
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { environment } from '../environments/environment';
 
 // Service
 import { AuthService } from './services/auth-service';
+import { BlogServiceService } from './services/blog-service.service';
 
 @NgModule({
   declarations: [
@@ -27,6 +31,8 @@ import { AuthService } from './services/auth-service';
     FooterComponent,
     MenuComponent,
     ConnexionComponent,
+    BlockListComponent,
+    BlockCreerComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +42,8 @@ import { AuthService } from './services/auth-service';
     NgbModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireDatabaseModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

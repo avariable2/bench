@@ -1,0 +1,15 @@
+<div class="container">
+    <form>
+        <div class="mb-3">
+            <label for="titre" class="form-label h3">Titre :</label>
+            <input type="email" class="form-control form-control-lg" id="titre" placeholder="Devenir aussi Strong que Ben ! (ça tourne mal)">
+        </div>
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Mignature du post</label>
+            <input class="form-control" type="file" id="formFile">
+        </div>
+        <select *ngFor="let value of genres" class="form-select" aria-label="Default select example">
+        <option value="{{ value }}"> {{ value }} </option>
+        </select>
+    </form>
+</div>
