@@ -1,9 +1,9 @@
 export interface Post {
-  id?: number;
-  titre?: string;
-  image?: string;
-  genre?: string;
-  description?: string;
-  corpsBlog?: string;
-  date?: string;
-}
+    titre: string;
+    image: string;
+    genre: any;
+    description: string;
+    corpsBlog: string;
+    date: Date;
+  }
+  
