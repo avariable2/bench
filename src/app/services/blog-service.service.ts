@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { Observable } from 'rxjs';
+import { Observable, async } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -69,12 +69,7 @@ export class BlogServiceService {
     return task;
   }
 
-  getStatutEnvoie(task: any){
-    return task.percentageChanges();
-  }
-
-  getImageByName(nom: string) {
-    const ref = this.storage.ref('Images/Posts/' + nom);
-    return ref.getDownloadURL();
+  getImageByRef(ref: string) {
+    return this.storage.ref(ref).getDownloadURL();
   }
 }

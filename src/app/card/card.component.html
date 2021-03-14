@@ -1,0 +1,23 @@
+<mat-card class="card">
+    <!-- <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div> 
+        <mat-card-title>
+            {{ titre }}
+        </mat-card-title>
+        <mat-card-subtitle>
+            <ng-content select="[sous-titre]"></ng-content>
+        </mat-card-subtitle>
+    </mat-card-header>-->
+
+    <img mat-card-image src="{{ src }}" alt="Photo of a Shiba Inu" id="image">
+    <mat-card-content>
+        <mat-card-title>{{ titre }}</mat-card-title>
+        <p>
+            {{ description }}
+        </p>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-button>LIKE</button>
+        <button mat-button>SHARE</button>
+    </mat-card-actions>
+</mat-card>

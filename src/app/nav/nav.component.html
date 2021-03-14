@@ -1,0 +1,34 @@
+<mat-sidenav-container class="sidenav-container">
+    <mat-sidenav #drawer class="sidenav" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'" mode="over" opened="false">
+        <mat-toolbar>Menu</mat-toolbar>
+        <mat-nav-list>
+            <a mat-list-item routerLink="">
+                <mat-icon aria-hidden="false" aria-label="home icon">home</mat-icon>Accueil
+            </a>
+            <a mat-list-item routerLink="blog-creer">
+                <mat-icon aria-hidden="false" aria-label="blog creer icon">create</mat-icon>Créer blog
+            </a>
+            <a mat-list-item routerLink="blog-list">
+                <mat-icon aria-hidden="false" aria-label="fitness icon">fitness_center</mat-icon>Blog</a>
+
+            <a *ngIf="estCo" (click)="deco()" mat-list-item routerLink="">
+                <mat-icon aria-hidden="false" aria-label="logout icon">logout</mat-icon>Déconnexion
+            </a>
+
+            <a *ngIf="!estCo" mat-list-item routerLink="log">
+                <mat-icon aria-hidden="false" aria-label="login icon">login</mat-icon>Connexion</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar id="nav">
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()">
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <span>Pascal Gym</span>
+        </mat-toolbar>
+
+        <!-- Add Content Here -->
+        <router-outlet></router-outlet>
+
+    </mat-sidenav-content>
+</mat-sidenav-container>

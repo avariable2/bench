@@ -3,17 +3,27 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { HttpClientModule } from '@angular/common/http';
+import {FlexLayoutModule} from "@angular/flex-layout";
+
+
+// Angular Material
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatDialogModule } from '@angular/material/dialog';
 
 // Component
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { IndexComponent } from './index/index.component';
 import { FooterComponent } from './footer/footer.component';
-import { MenuComponent } from './menu/menu.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { BlockListComponent } from './block-list/block-list.component';
 import { BlockCreerComponent } from './block-creer/block-creer.component';
+import { CardComponent } from './card/card.component';
+import { DialogComponent } from './dialog/dialog.component';
+import { NavComponent } from './nav/nav.component';
 
 // Firebase services + enviorment module
 import { AngularFireModule } from "@angular/fire";
@@ -26,30 +36,48 @@ import { environment } from '../environments/environment';
 // Service
 import { AuthService } from './services/auth-service';
 import { BlogServiceService } from './services/blog-service.service';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     IndexComponent,
     FooterComponent,
-    MenuComponent,
     ConnexionComponent,
     BlockListComponent,
     BlockCreerComponent,
+    NavComponent,
+    CardComponent,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
     NgbModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatGridListModule,
+    MatDialogModule,
+    FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
     EditorModule,
+    BrowserAnimationsModule,
+    LayoutModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatListModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
