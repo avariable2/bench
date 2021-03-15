@@ -11,6 +11,7 @@ import { finalize } from 'rxjs/operators';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogComponent } from '../dialog/dialog.component';
 
+
 @Component({
   selector: 'app-block-creer',
   templateUrl: './block-creer.component.html',
@@ -18,15 +19,14 @@ import { DialogComponent } from '../dialog/dialog.component';
 })
 export class BlockCreerComponent implements OnInit {
 
-  file: File = null as any;
-  etatUpload!: Observable<number | undefined>;
-  downloadURL!: any;
-
   // Formulaire pour les genres (ou catégorie)
   genreForm = new FormGroup({
     nom: new FormControl('',Validators.required),
     couleur: new FormControl(''),
   });
+  // Genre
+  lesGenres: Observable<any[]>;
+  veuxAjouter = false;
 
   // Formulaire pour les posts
   postForm = new FormGroup({
@@ -36,16 +36,14 @@ export class BlockCreerComponent implements OnInit {
     description: new FormControl('',Validators.required),
     corps: new FormControl('',Validators.required),
   });
-
-  // Genre
-  lesGenres: Observable<any[]>;
-  veuxAjouter = false;
-
   // Alert
   doitPasserInfo = false;
   modalType = "success";
   modalText = "Super ! la catégorie à bien été créer.";
-  
+  //File
+  file: File = null as any;
+  etatUpload!: Observable<number | undefined>;
+  downloadURL!: any;
 
   constructor(private blogService: BlogServiceService, private storage: AngularFireStorage, public dialog: MatDialog) {
     this.lesGenres = this.blogService.getGenre();

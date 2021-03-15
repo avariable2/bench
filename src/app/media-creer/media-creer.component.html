@@ -1,0 +1,19 @@
+<div class="container bg-light">
+    <form>
+        <h2 class="display-2">Ajouter des photos dans l'espace média :</h2>
+        <mat-form-field appearance="fill">
+            <mat-label>Nom de l'image</mat-label>
+            <input matInput type="text">
+        </mat-form-field>
+        <br>
+        <input (change)="onChange($event)" accept="image/jpg, image/png, image/gif" type="file">
+        <br>
+        <br>
+        <button mat-raised-button class="btn">Envoyer </button>
+    </form>
+    <br>
+    <br>
+    <mat-divider></mat-divider>
+    <h2 class="display-2">Resultat : </h2>
+    <img [src]="url" height="200" alt="Exemple">
+</div>

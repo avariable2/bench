@@ -16,6 +16,14 @@
                 <mat-icon aria-hidden="false" aria-label="outils">handyman</mat-icon>Outils
             </a>
 
+            <a mat-list-item routerLink="media">
+                <mat-icon aria-hidden="false" aria-label="media">camera_alt</mat-icon>Média
+            </a>
+
+            <a mat-list-item routerLink="admin">
+                <mat-icon aria-hidden="false" aria-label="admin">admin_panel_settings</mat-icon>Admin
+            </a>
+
             <a *ngIf="estCo" (click)="deco()" mat-list-item routerLink="">
                 <mat-icon aria-hidden="false" aria-label="logout icon">logout</mat-icon>Déconnexion
             </a>

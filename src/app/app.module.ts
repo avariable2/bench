@@ -2,9 +2,8 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
 import {FlexLayoutModule} from "@angular/flex-layout";
-
 
 // Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -13,9 +12,9 @@ import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatTabsModule } from '@angular/material/tabs';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
-
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
 
 // Component
 import { AppRoutingModule } from './app-routing.module';
@@ -47,6 +46,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { OutilsComponent } from './outils/outils.component';
 import { CompteurCalComponent } from './compteur-cal/compteur-cal.component';
+import { MediaComponent } from './media/media.component';
+import { AdminComponent } from './admin/admin.component';
+import { MediaCreerComponent } from './media-creer/media-creer.component';
 
 
 @NgModule({
@@ -62,6 +64,9 @@ import { CompteurCalComponent } from './compteur-cal/compteur-cal.component';
     DialogComponent,
     OutilsComponent,
     CompteurCalComponent,
+    MediaComponent,
+    AdminComponent,
+    MediaCreerComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,8 +94,11 @@ import { CompteurCalComponent } from './compteur-cal/compteur-cal.component';
     MatTabsModule,
     MatInputModule,
     MatFormFieldModule,
+    MatSelectModule,
   ],
-  providers: [],
+  providers: [
+    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js'}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

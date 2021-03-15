@@ -47,7 +47,7 @@
                             <input formControlName="couleur" type="color" class="form-control form-control-color" value="#563d7c" title="Choose your color">
                         </div>
                         <div class="col-auto">
-                            <button [disabled]="!genreForm.valid" (click)="ajouterGenre()" class="btn btn-success">Ok</button>
+                            <a (click)="ajouterGenre()" class="btn btn-success">Ok</a>
                         </div>
                         <div class="col-auto">
                             <a class="btn btn-danger" (click)="veuxAjouterGenre()">X</a>
@@ -68,17 +68,8 @@
                     <label for="inabox" class="form-label h4">Corps du Post</label>
                     <editor formControlName="corps" apiKey="umzz1gl9pk8tam359ksjoq685xmc3j3bwc5i4sdddq635q5d" initialValue="<p>Ecris ton article BG</p>" [init]="{
                         height: 500,
-                        menubar: false,
-                        plugins: [
-                        'advlist autolink lists link image charmap print',
-                        'preview anchor searchreplace visualblocks code',
-                        'fullscreen insertdatetime media table paste',
-                        'help wordcount'
-                        ],
-                        toolbar:
-                        'undo redo | formatselect | bold italic | \
-                        alignleft aligncenter alignright alignjustify | \
-                        bullist numlist outdent indent | help'
+                        base_url: '/tinyme',
+                        suffix: '.min'
                     }">
                     </editor>
                 </div>
