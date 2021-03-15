@@ -12,6 +12,10 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatTabsModule } from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+
 
 // Component
 import { AppRoutingModule } from './app-routing.module';
@@ -41,6 +45,8 @@ import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { OutilsComponent } from './outils/outils.component';
+import { CompteurCalComponent } from './compteur-cal/compteur-cal.component';
 
 
 @NgModule({
@@ -54,6 +60,8 @@ import { MatListModule } from '@angular/material/list';
     NavComponent,
     CardComponent,
     DialogComponent,
+    OutilsComponent,
+    CompteurCalComponent,
   ],
   imports: [
     BrowserModule,
@@ -78,6 +86,9 @@ import { MatListModule } from '@angular/material/list';
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
+    MatTabsModule,
+    MatInputModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,0 +1,47 @@
+<div class="container">
+    <mat-card class="card-info">
+        <h3>
+            Le métabolisme de base (MB), ou métabolisme basal, correspond aux besoins énergétiques « incompressibles » de l'organisme, c’est-à-dire la dépense d'énergie minimum quotidienne permettant à l'organisme de survivre ; au repos, l’organisme consomme en effet
+            de l’énergie pour maintenir en activité ses fonctions (cœur, cerveau, respiration, digestion, maintien de la température du corps), via des réactions biochimiques (qui utilisent l'ATP). Il est exprimé sur la base d'une journée, donc en joules
+            ou en calories par jour. L'alimentation permet de subvenir à ces besoins énergétiques.
+        </h3>
+    </mat-card>
+    <br>
+    <form [formGroup]="calculForm" (ngSubmit)="calc()" class="form-calc">
+        <mat-form-field appearance="fill" class="input-calc">
+            <mat-label>Sexe</mat-label>
+            <select matNativeControl formControlName="sexe" required>
+                <option value="H">Homme</option>
+                <option value="F">Femme</option>
+            </select>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="input-calc">
+            <mat-label>Age</mat-label>
+            <input type="number" required matInput placeholder="30 ans" formControlName="age">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="input-calc">
+            <mat-label>Poids</mat-label>
+            <input type="number" required matInput placeholder="70 kg" formControlName="poid">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="input-calc">
+            <mat-label>Taille</mat-label>
+            <input type="number" required matInput placeholder="1,80 mètre" formControlName="taille">
+            <mat-hint align="start"><strong>L'unité est le m (ex: 1m80 = 1,80 mètre)</strong> </mat-hint>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill" class="input-calc">
+            <mat-label>Niveau d'activité</mat-label>
+            <select matNativeControl formControlName="activite" required>
+                <option value="sedentaire">Sédentaire</option>
+                <option value="actif">Actif</option>
+            </select>
+        </mat-form-field>
+        <br>
+        <button type="submit" mat-raised-button class="btn">Calcul</button>
+    </form>
+    <br>
+    <h3>Resultat : {{ resultat }} kcal</h3>
+</div>

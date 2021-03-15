@@ -9,14 +9,20 @@
                 <mat-icon aria-hidden="false" aria-label="blog creer icon">create</mat-icon>Créer blog
             </a>
             <a mat-list-item routerLink="blog-list">
-                <mat-icon aria-hidden="false" aria-label="fitness icon">fitness_center</mat-icon>Blog</a>
+                <mat-icon aria-hidden="false" aria-label="fitness icon">fitness_center</mat-icon>Blog
+            </a>
+
+            <a mat-list-item routerLink="outils">
+                <mat-icon aria-hidden="false" aria-label="outils">handyman</mat-icon>Outils
+            </a>
 
             <a *ngIf="estCo" (click)="deco()" mat-list-item routerLink="">
                 <mat-icon aria-hidden="false" aria-label="logout icon">logout</mat-icon>Déconnexion
             </a>
 
             <a *ngIf="!estCo" mat-list-item routerLink="log">
-                <mat-icon aria-hidden="false" aria-label="login icon">login</mat-icon>Connexion</a>
+                <mat-icon aria-hidden="false" aria-label="login icon">login</mat-icon>Connexion
+            </a>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>

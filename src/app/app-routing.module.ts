@@ -5,6 +5,7 @@ import { ConnexionComponent } from './connexion/connexion.component';
 import { BlockListComponent } from './block-list/block-list.component';
 import { BlockCreerComponent } from './block-creer/block-creer.component';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
+import { OutilsComponent } from './outils/outils.component';
 
 
 const routes: Routes = [
@@ -13,6 +14,7 @@ const routes: Routes = [
   { path: 'log', component: ConnexionComponent },
   { path: 'blog-list', component: BlockListComponent },
   { path: 'blog-creer', component: BlockCreerComponent, canActivate:[AngularFireAuthGuard]},
+  { path: 'outils', component: OutilsComponent},
 ];
 
 @NgModule({
