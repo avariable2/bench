@@ -1,84 +1,83 @@
-<div class="container-fluid" id="panelAdmin">
+<div class="container">
 
-    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <!-- Modal pour afficher les informations utiles -->
+    <p [hidden]="!doitPasserInfo">
+        <ngb-alert [type]="modalType" close="annuler();" [animation]="true" [dismissible]="true">
+            {{ modalText }}
+        </ngb-alert>
+    </p>
 
-        <div class="container rounded m-4 pb-2" id="corps">
+    <!-- Formulaire pour les posts en général -->
+    <form [formGroup]="postForm" (ngSubmit)="ajouterPost()">
+        <h2 class="display-2">Création de Blog :</h2>
+        <mat-form-field appearance="fill">
+            <mat-label>Titre :</mat-label>
+            <input formControlName="titre" type="text" matInput placeholder="Devenir aussi Strong que Ben ! (ça tourne mal)" required>
+        </mat-form-field>
 
-            <!-- Modal pour afficher les informations utiles -->
-            <p [hidden]="!doitPasserInfo">
-                <ngb-alert [type]="modalType" close="annuler();" [animation]="true" [dismissible]="true">
-                    {{ modalText }}
-                </ngb-alert>
-            </p>
+        <!-- File -->
+        <div class="mb-3">
+            <label for="formFile">Mignature du post</label>
+            <br>
+            <input formControlName="mignature" type="file" (change)="onChange($event)" accept="image/jpg, image/png, image/gif" id="formFile">
+            <div> ¬> Upload à : {{ etatUpload | async }}</div>
+        </div>
 
-            <!-- Formulaire pour les posts en général -->
-            <form [formGroup]="postForm" (ngSubmit)="ajouterPost()">
-                <div class="mb-3 mt-2">
-                    <label for="titre" class="form-label h2">Titre :</label>
-                    <input formControlName="titre" type="text" class="form-control form-control-lg" id="titre" placeholder="Devenir aussi Strong que Ben ! (ça tourne mal)" required>
-                </div>
+        <mat-form-field appearance="fill">
+            <mat-label>Catégorie</mat-label>
+            <mat-select formControlName="categorie">
+                <mat-option *ngFor="let value of lesGenres | async" value="{{ value.key }}"> {{ value.nom }} </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <br/>
 
-                <!-- File -->
-                <div class="mb-3">
-                    <label for="formFile" class="form-label h4">Mignature du post</label>
-                    <input formControlName="mignature" class="form-control" type="file" (change)="onChange($event)" accept="image/jpg, image/png, image/gif" id="formFile">
-                    <div> ¬> Upload à : {{ etatUpload | async }}</div>
-                </div>
+        <a (click)="veuxAjouterGenre()" id="btnAjouter" class="btn text-light">Ajouter</a>
 
-                <div class="mb-3">
-                    <label class="h4">Selectionner catégorie : </label>
-                    <select formControlName="categorie" class="form-select" aria-label="Default select example">
-                    <option *ngFor="let value of lesGenres | async" value="{{ value.key }}"> {{ value.nom }} </option> 
-                </select>
+        <br/>
 
-                    <br/>
+        <!-- Formulaire pour ajouter un Genre au artciles (une catégorie) -->
+        <div [formGroup]="genreForm" class="mb-3 row p-1" [hidden]="!veuxAjouter">
+            <label for="inputAjouterGenre" class="col-sm-3 col-form-label h4 ">Nom de la catégorie: </label>
+            <div class="col-auto">
+                <input formControlName="nom" id="inputAjouterGenre" class="form-control" type="text" [hidden]="!veuxAjouter">
+            </div>
+            <div class="col-sm-2">
+                <input formControlName="couleur" type="color" class="form-control form-control-color" title="Choose your color">
+            </div>
+            <div class="col-auto">
+                <a (click)="ajouterGenre()" class="btn btn-success">Ok</a>
+            </div>
+            <div class="col-auto">
+                <a class="btn btn-danger" (click)="veuxAjouterGenre()">X</a>
+            </div>
+        </div>
 
-                    <a (click)="veuxAjouterGenre()" id="btnAjouter" class="btn text-light">Ajouter</a>
+        <br>
 
-                    <br/>
+        <mat-form-field appearance="fill">
+            <mat-label>Description</mat-label>
+            <textarea formControlName="description" matInput></textarea>
+        </mat-form-field>
 
-                    <!-- Formulaire pour ajouter un Genre au artciles (une catégorie) -->
-                    <div [formGroup]="genreForm" class="mb-3 row p-1" [hidden]="!veuxAjouter">
-                        <label for="inputAjouterGenre" class="col-sm-3 col-form-label h4 ">Nom de la catégorie: </label>
-                        <div class="col-auto">
-                            <input formControlName="nom" id="inputAjouterGenre" class="form-control" type="text" [hidden]="!veuxAjouter">
-                        </div>
-                        <div class="col-sm-2">
-                            <input formControlName="couleur" type="color" class="form-control form-control-color" value="#563d7c" title="Choose your color">
-                        </div>
-                        <div class="col-auto">
-                            <a (click)="ajouterGenre()" class="btn btn-success">Ok</a>
-                        </div>
-                        <div class="col-auto">
-                            <a class="btn btn-danger" (click)="veuxAjouterGenre()">X</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mb-3">
-                    <label for="description" class="form-label h4">Description</label>
-                    <textarea formControlName="description" class="form-control" id="description" rows="2"></textarea>
-                </div>
-
-                <!-- 
+        <!-- 
                 Textarea qui fonctionne avec Tiny 
                 => https://www.tiny.cloud/docs/integrations/angular/#tinymceangularintegrationquickstartguide
             -->
-                <div class="mb-3">
-                    <label for="inabox" class="form-label h4">Corps du Post</label>
-                    <editor formControlName="corps" apiKey="umzz1gl9pk8tam359ksjoq685xmc3j3bwc5i4sdddq635q5d" initialValue="<p>Ecris ton article BG</p>" [init]="{
+        <div class="mb-3">
+            <label>Corps du Post</label>
+            <editor formControlName="corps" apiKey="umzz1gl9pk8tam359ksjoq685xmc3j3bwc5i4sdddq635q5d" initialValue="<p>Ecris ton article BG</p>" [init]="{
                         height: 500,
-                        base_url: '/tinyme',
-                        suffix: '.min'
+                        plugins: [
+                            'lists link image paste help wordcount'
+                        ],
+                        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help'
                     }">
-                    </editor>
-                </div>
-
-                <div class="d-grid gap-2 col-6 mx-auto mb-3">
-                    <button id="btnSubmit" type="submit" [disabled]="!postForm.valid" class="btn text-light">Poster</button>
-                </div>
-
-            </form>
+            </editor>
         </div>
-    </main>
+
+        <div class="d-grid gap-2 col-6 mx-auto mb-3">
+            <button id="btnSubmit" type="submit" [disabled]="!postForm.valid" class="btn text-light">Poster</button>
+        </div>
+
+    </form>
 </div>

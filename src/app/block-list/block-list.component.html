@@ -1,3 +1,8 @@
+<div class="grille">
+    <app-card *ngFor="let item of lesPosts | async" [src]="item.image" [titre]="item.titre" [description]="item.description">
+    </app-card>
+</div>
+
 <mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
     <mat-grid-tile *ngFor="let item of lesPosts | async">
         <app-card [src]="item.image" [titre]="item.titre" [description]="item.description">

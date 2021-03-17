@@ -1,5 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireStorage } from '@angular/fire/storage';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { finalize } from 'rxjs/operators';
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-media-creer',
@@ -9,8 +16,17 @@ import { AngularFireStorage } from '@angular/fire/storage';
 export class MediaCreerComponent implements OnInit {
   image: any;
   url: string | ArrayBuffer | null | undefined;
+  doitEnvoyer = false;
 
-  constructor(private storage: AngularFireStorage) { }
+  formMedia = new FormGroup({
+    nom: new FormControl('', Validators.required),
+    image: new FormControl('', Validators.required)
+  });
+  pourcentageEnvoie: any;
+  horizontalPosition: MatSnackBarHorizontalPosition = 'center';
+  verticalPosition: MatSnackBarVerticalPosition = 'bottom';
+
+  constructor(private storage: AngularFireStorage, private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
   }
@@ -25,5 +41,31 @@ export class MediaCreerComponent implements OnInit {
       reader.onload = (event) => { // called once readAsDataURL is completed
         this.url = (event.target as FileReader).result;
       }
+  }
+
+  ajouterPhoto() {
+    this.doitEnvoyer = true;
+    let nom = this.formMedia.value.nom;
+    const filePath = 'Images/Medias/'+ nom;
+    const fileRef = this.storage.ref(filePath);
+    const task = this.storage.upload(filePath, this.image);
+
+    // observe percentage changes
+    this.pourcentageEnvoie = task.percentageChanges();
+
+    task.snapshotChanges().pipe(
+      finalize(() => 
+        fileRef.getDownloadURL().subscribe( (download) => { this.openSnackBar()}) 
+      )
+   )
+  .subscribe();
+  }
+
+  openSnackBar() {
+    this._snackBar.open('Super l\'image à été ajouter !!', 'X', {
+      duration: 5000,
+      horizontalPosition: this.horizontalPosition,
+      verticalPosition: this.verticalPosition,
+    });
   }
 }

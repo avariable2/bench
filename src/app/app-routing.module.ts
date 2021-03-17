@@ -15,7 +15,6 @@ const routes: Routes = [
   { path: 'bench', component: IndexComponent },
   { path: 'log', component: ConnexionComponent },
   { path: 'blog-list', component: BlockListComponent },
-  { path: 'blog-creer', component: BlockCreerComponent, canActivate:[AngularFireAuthGuard]},
   { path: 'outils', component: OutilsComponent},
   { path: 'media', component: MediaComponent },
   { path: 'admin', component: AdminComponent, canActivate:[AngularFireAuthGuard]}

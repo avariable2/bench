@@ -1,9 +1,15 @@
 body {
-  background: #f4f4f4;
+    background: #f4f4f4;
 }
 
 .banner {
-  background: #a770ef;
-  background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
-  background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+    background: #282bb4;
+    background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+    background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+}
+
+.grille {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
 }

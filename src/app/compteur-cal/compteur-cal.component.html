@@ -1,4 +1,6 @@
 <div class="container">
+
+    <img class="img-selection" src="assets/fruit.png" alt="assortiment de fruit">
     <mat-card class="card-info">
         <h3>
             Le métabolisme de base (MB), ou métabolisme basal, correspond aux besoins énergétiques « incompressibles » de l'organisme, c’est-à-dire la dépense d'énergie minimum quotidienne permettant à l'organisme de survivre ; au repos, l’organisme consomme en effet
@@ -40,7 +42,7 @@
             </select>
         </mat-form-field>
         <br>
-        <button type="submit" mat-raised-button class="btn">Calcul</button>
+        <button [disabled]="calculForm.invalid" type="submit" mat-raised-button class="btn">Calcul</button>
     </form>
     <br>
     <h3>Resultat : {{ resultat }} kcal</h3>

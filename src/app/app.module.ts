@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { EditorModule, TINYMCE_SCRIPT_SRC } from '@tinymce/tinymce-angular';
+import { EditorModule } from '@tinymce/tinymce-angular';
 import {FlexLayoutModule} from "@angular/flex-layout";
 
 // Angular Material
@@ -15,6 +15,8 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 // Component
 import { AppRoutingModule } from './app-routing.module';
@@ -49,6 +51,7 @@ import { CompteurCalComponent } from './compteur-cal/compteur-cal.component';
 import { MediaComponent } from './media/media.component';
 import { AdminComponent } from './admin/admin.component';
 import { MediaCreerComponent } from './media-creer/media-creer.component';
+import { CubeComponent } from './animation/cube/cube.component';
 
 
 @NgModule({
@@ -67,6 +70,7 @@ import { MediaCreerComponent } from './media-creer/media-creer.component';
     MediaComponent,
     AdminComponent,
     MediaCreerComponent,
+    CubeComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,9 +99,11 @@ import { MediaCreerComponent } from './media-creer/media-creer.component';
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatProgressBarModule,
+    MatSnackBarModule,
   ],
   providers: [
-    { provide: TINYMCE_SCRIPT_SRC, useValue: 'tinymce/tinymce.min.js'}
+    
   ],
   bootstrap: [AppComponent]
 })
