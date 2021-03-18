@@ -1,9 +1,10 @@
+// Angular/cli et core
 import { NgModule } from '@angular/core';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import {FlexLayoutModule} from "@angular/flex-layout";
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 // Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -18,18 +19,6 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-// Component
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { IndexComponent } from './index/index.component';
-import { FooterComponent } from './footer/footer.component';
-import { ConnexionComponent } from './connexion/connexion.component';
-import { BlockListComponent } from './block-list/block-list.component';
-import { BlockCreerComponent } from './block-creer/block-creer.component';
-import { CardComponent } from './card/card.component';
-import { DialogComponent } from './dialog/dialog.component';
-import { NavComponent } from './nav/nav.component';
-
 // Firebase services + enviorment module
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -41,6 +30,19 @@ import { environment } from '../environments/environment';
 // Service
 import { AuthService } from './services/auth-service';
 import { BlogServiceService } from './services/blog-service.service';
+import { TroncText } from './services/pipe/tronc-text';
+
+//Component
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { IndexComponent } from './index/index.component';
+import { FooterComponent } from './footer/footer.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { BlockListComponent } from './block-list/block-list.component';
+import { BlockCreerComponent } from './block-creer/block-creer.component';
+
+import { DialogComponent } from './dialog/dialog.component';
+import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
@@ -64,7 +66,6 @@ import { ConstructionComponent } from './construction/construction.component';
     BlockListComponent,
     BlockCreerComponent,
     NavComponent,
-    CardComponent,
     DialogComponent,
     OutilsComponent,
     CompteurCalComponent,
@@ -72,7 +73,11 @@ import { ConstructionComponent } from './construction/construction.component';
     AdminComponent,
     MediaCreerComponent,
     CubeComponent,
+<<<<<<< HEAD
+    TroncText,
+=======
     ConstructionComponent,
+>>>>>>> cb21f1f63c6cb8e564f5508d621106e8c9c76f85
   ],
   imports: [
     BrowserModule,

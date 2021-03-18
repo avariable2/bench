@@ -1,15 +1,53 @@
-body {
-    background: #f4f4f4;
-}
-
 .banner {
     background: #282bb4;
     background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
     background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 
-.grille {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+.banner h2 {
+    margin-left: 3%;
+    font-size: 3em;
+    line-height: 120%;
 }
+
+.image {
+    width:25%;
+    height: auto;
+}
+
+.image:hover {
+    transform: scale(1.025);
+}
+
+@media (max-width: 800px) {
+    .banner {
+      flex-direction: column;
+    }
+
+    .banner h2 {
+        font-size: 2.2em;
+        padding-top: 1%;
+    }
+
+    .image {
+        width: 35%;
+    }
+  }
+
+.content {
+    padding: 1%;
+    /* background: lightgray; */
+}
+
+.content > .mat-card {
+    width: 200px;
+}
+
+.card {
+
+}
+

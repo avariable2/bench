@@ -1,11 +1,27 @@
-<div class="grille">
-    <app-card *ngFor="let item of lesPosts | async" [src]="item.image" [titre]="item.titre" [description]="item.description">
-    </app-card>
+
+<div class="banner">
+    <h2>Le blog pour connaitre nos astuces et conseils ! </h2>
+    <img src="assets/cherry-593.png" alt="musculation avec haltere" class="image">
 </div>
 
-<mat-grid-list [cols]="breakpoint" (window:resize)="onResize($event)">
-    <mat-grid-tile *ngFor="let item of lesPosts | async">
-        <app-card [src]="item.image" [titre]="item.titre" [description]="item.description">
-        </app-card>
-    </mat-grid-tile>
-</mat-grid-list>
+<div class="container pt-3">
+    <div class="content">
+        <div fxLayout="row wrap" fxLayoutGap="2% grid">
+            <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let item of lesPosts | async">
+                <mat-card class="card">
+                    <img mat-card-image src="{{ item.image }}" alt="{{ item.titre }}">
+                    <mat-card-content>
+                        <mat-card-title>{{ item.titre }}</mat-card-title>
+                        <p>
+                            {{ item.description | tronc:['25'] }}
+                        </p>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <button mat-button>LIKE</button>
+                        <button mat-button>SHARE</button>
+                    </mat-card-actions>
+                </mat-card> 
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,7 +17,7 @@
 
         <!-- File -->
         <div class="mb-3">
-            <label for="formFile">Mignature du post</label>
+            <label for="formFile">Mignature du post: (Essaye de garder les memes dimension que la dernière fois)</label>
             <br>
             <input formControlName="mignature" type="file" (change)="onChange($event)" accept="image/jpg, image/png, image/gif" id="formFile">
             <div> ¬> Upload à : {{ etatUpload | async }}</div>
