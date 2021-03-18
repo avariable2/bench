@@ -52,6 +52,7 @@ import { MediaComponent } from './media/media.component';
 import { AdminComponent } from './admin/admin.component';
 import { MediaCreerComponent } from './media-creer/media-creer.component';
 import { CubeComponent } from './animation/cube/cube.component';
+import { ConstructionComponent } from './construction/construction.component';
 
 
 @NgModule({
@@ -71,6 +72,7 @@ import { CubeComponent } from './animation/cube/cube.component';
     AdminComponent,
     MediaCreerComponent,
     CubeComponent,
+    ConstructionComponent,
   ],
   imports: [
     BrowserModule,

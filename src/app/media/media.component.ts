@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MediaService } from '../services/media.service';
 
 @Component({
   selector: 'app-media',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./media.component.scss']
 })
 export class MediaComponent implements OnInit {
+  listMedia: any;
+  list: Array<any> = [];
 
-  constructor() { }
+  constructor(private mds: MediaService) {
+    this.mds.getAllMedia().subscribe(
+      (res) => this.listMedia = res.items.forEach((itemRef) => {
+        this.list.push(itemRef);
+    }));
+    
+  }
 
   ngOnInit(): void {
+    console.warn(this.list);
   }
 
 }

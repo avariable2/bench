@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AngularFireStorage } from '@angular/fire/storage/storage';
-import { AngularFireStorageReference } from '@angular/fire/storage/ref';
+import { AngularFireStorage, AngularFireStorageReference } from '@angular/fire/storage';
 
 
 @Injectable({
@@ -14,7 +13,7 @@ export class MediaService {
   }
 
   getAllMedia () {
-    this.ref.listAll();
+    return this.ref.listAll();
   }
 
 
