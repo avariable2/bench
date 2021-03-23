@@ -33,6 +33,17 @@ export class BlogServiceService {
     return this.list.valueChanges();
   }
 
+  getPostInfo() {
+    return this.listSnapshot;
+  }
+
+  getPostParKey( key: string | null) {
+    // On recupere un AngularFireList de type Post pour renvoyer 
+    // un Observable<Post> avec valueChanges()
+    let list : AngularFireList<string> = this.db.list('post/' + key );
+    return list.valueChanges();
+  }
+
   getGenre(){
     return this.db.list('genre').snapshotChanges().pipe(
       map(changes => 
@@ -42,7 +53,7 @@ export class BlogServiceService {
   }
 
   getGenreById(idGenre: string){
-    return this.db.list('genre/'+idGenre);
+    return this.db.list('genre/' + idGenre);
   }
 
   ajouterGenre(genre: Genre){

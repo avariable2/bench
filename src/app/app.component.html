@@ -1,6 +1,4 @@
 <app-nav></app-nav>
-<ng-template>
-    <div class="spinner-border m-5" role="status">
-        <span class="sr-only">Loading...</span>
+    <div class="animation" role="status" *ngIf="showOverlay">
+        <img src="assets/annime.gif" alt="haltere qui tourne">
     </div>
-</ng-template>

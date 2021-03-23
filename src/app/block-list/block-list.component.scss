@@ -1,7 +1,7 @@
 .banner {
-    background: #282bb4;
-    background: -webkit-linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
-    background: linear-gradient(to right, #a770ef, #cf8bf3, #fdb99b);
+    background: #C70039;
+    background: -webkit-linear-gradient(to right, #C70039, #FF5733);
+    background: linear-gradient(to right, #C70039,#FF5733);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -15,7 +15,7 @@
 }
 
 .image {
-    width:25%;
+    width:15%;
     height: auto;
 }
 
@@ -32,10 +32,6 @@
         font-size: 2.2em;
         padding-top: 1%;
     }
-
-    .image {
-        width: 35%;
-    }
   }
 
 .content {
@@ -46,8 +42,3 @@
 .content > .mat-card {
     width: 200px;
 }
-
-.card {
-
-}
-

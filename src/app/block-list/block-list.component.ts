@@ -15,7 +15,7 @@ export class BlockListComponent implements OnInit {
   breakpoint: number | undefined;
 
   constructor(private db: BlogServiceService) {
-    this.lesPosts = this.db.getPost();
+    this.lesPosts = this.db.getPostInfo();
   }
 
   ngOnInit(): void {

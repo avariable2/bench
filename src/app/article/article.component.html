@@ -1,0 +1,8 @@
+<div class="container">
+    <h2>{{ article.titre }}</h2>
+    <p>{{ article.description }}</p>
+    <img src="{{ article.image }}" alt="{{ article.titre }}">
+    {{ article.corpsBlog }}
+    <p>{{ article.genre }}</p>
+    <p>Poster le {{ article.date | date }}</p>
+</div>

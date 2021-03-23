@@ -78,13 +78,14 @@ export class BlockCreerComponent implements OnInit {
 
   // Post
   ajouterPost() {
-    let post: Post = { 
+    let myDate = new Date().toString();
+    let post: Post = {
       titre: this.postForm.value.titre,
       image: this.downloadURL,
       genre: this.postForm.value.categorie,
       description: this.postForm.value.description,
       corpsBlog: this.postForm.value.corps,
-      date: new Date(),
+      date: myDate,
     };
 
     if (this.blogService.creerPost(post)){

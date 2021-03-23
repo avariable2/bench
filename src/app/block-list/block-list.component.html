@@ -1,17 +1,17 @@
 
 <div class="banner">
     <h2>Le blog pour connaitre nos astuces et conseils ! </h2>
-    <img src="assets/cherry-593.png" alt="musculation avec haltere" class="image">
+    <img src="assets/bench-press.png" alt="musculation avec haltere" class="image">
 </div>
 
 <div class="container pt-3">
     <div class="content">
         <div fxLayout="row wrap" fxLayoutGap="2% grid">
             <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let item of lesPosts | async">
-                <mat-card class="card">
+                <mat-card class="card" [routerLink]="['/article', item.key ]">
                     <img mat-card-image src="{{ item.image }}" alt="{{ item.titre }}">
                     <mat-card-content>
-                        <mat-card-title>{{ item.titre }}</mat-card-title>
+                        <mat-card-title>{{ item.titre | tronc:['14']  }}</mat-card-title>
                         <p>
                             {{ item.description | tronc:['25'] }}
                         </p>

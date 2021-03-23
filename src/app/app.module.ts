@@ -18,6 +18,12 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LayoutModule } from '@angular/cdk/layout';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+
 
 // Firebase services + enviorment module
 import { AngularFireModule } from "@angular/fire";
@@ -40,14 +46,8 @@ import { FooterComponent } from './footer/footer.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { BlockListComponent } from './block-list/block-list.component';
 import { BlockCreerComponent } from './block-creer/block-creer.component';
-
 import { DialogComponent } from './dialog/dialog.component';
 import { NavComponent } from './nav/nav.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatListModule } from '@angular/material/list';
 import { OutilsComponent } from './outils/outils.component';
 import { CompteurCalComponent } from './compteur-cal/compteur-cal.component';
 import { MediaComponent } from './media/media.component';
@@ -55,6 +55,7 @@ import { AdminComponent } from './admin/admin.component';
 import { MediaCreerComponent } from './media-creer/media-creer.component';
 import { CubeComponent } from './animation/cube/cube.component';
 import { ConstructionComponent } from './construction/construction.component';
+import { ArticleComponent } from './article/article.component';
 
 
 @NgModule({
@@ -73,11 +74,9 @@ import { ConstructionComponent } from './construction/construction.component';
     AdminComponent,
     MediaCreerComponent,
     CubeComponent,
-<<<<<<< HEAD
-    TroncText,
-=======
     ConstructionComponent,
->>>>>>> cb21f1f63c6cb8e564f5508d621106e8c9c76f85
+    TroncText,
+    ArticleComponent,
   ],
   imports: [
     BrowserModule,
