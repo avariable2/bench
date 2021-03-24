@@ -46,3 +46,7 @@
 .content > .mat-card {
     width: 200px;
 }
+
+.card:hover {
+    transform: scale(1.05);
+}

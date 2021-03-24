@@ -1,13 +1,13 @@
 <div class="masterhead" style="background-image:url({{article.image}})"></div>
 <mat-card class="mat">
-    <mat-card-header>
-        <mat-card-title class="mat-titre">{{article.titre}}</mat-card-title>
-        <mat-card-subtitle class="sous-titre">Posté le {{ article.date | date}}</mat-card-subtitle>
-    </mat-card-header>
-    <mat-card-content class="mat-content">
-        <div class="container">
-            <div [innerHTML]="article.corpsBlog" class="corps-article"></div>
-        </div>
-    </mat-card-content>
-    
+
+  <h1 class="mat-titre">{{article.titre}}</h1>
+  <span class="sous-titre"> - Posté le {{ article.date | date}}</span>
+
+  <mat-card-content class="mat-content">
+    <div class="container">
+      <div [innerHTML]="article.corpsBlog" class="corps-article"></div>
+    </div>
+  </mat-card-content>
+
 </mat-card>

@@ -1,44 +1,50 @@
-<div class="container">
 
-    <img class="img-selection" src="assets/fruit.png" alt="assortiment de fruit">
+<mat-card>
     
-    <br>
-    <h3 class="titre">Trouver le nombre de calories nécessaire à vos exigeance : </h3>
-    <form [formGroup]="calculForm" (ngSubmit)="calc()" class="form-calc">
-        <mat-form-field appearance="fill" class="input-calc">
-            <mat-label>Sexe</mat-label>
-            <select matNativeControl formControlName="sexe" required>
-                <option value="H">Homme</option>
-                <option value="F">Femme</option>
-            </select>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="input-calc">
-            <mat-label>Age</mat-label>
-            <input type="number" required matInput placeholder="30 ans" formControlName="age">
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="input-calc">
-            <mat-label>Poids</mat-label>
-            <input type="number" required matInput placeholder="70 kg" formControlName="poid">
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="input-calc">
-            <mat-label>Taille</mat-label>
-            <input type="number" required matInput placeholder="1,80 mètre" formControlName="taille">
-            <mat-hint align="start"><strong>L'unité est le m (ex: 1m80 = 1,80 mètre)</strong> </mat-hint>
-        </mat-form-field>
-        <br>
-        <mat-form-field appearance="fill" class="input-calc">
-            <mat-label>Niveau d'activité</mat-label>
-            <select matNativeControl formControlName="activite" required>
-                <option value="sedentaire">Sédentaire</option>
-                <option value="actif">Actif</option>
-            </select>
-        </mat-form-field>
-        <br>
-        <button [disabled]="calculForm.invalid" type="submit" mat-raised-button class="btn">Calcul</button>
-    </form>
+    <mat-card-header>
+        <mat-card-title class="titre">Trouver le nombre de calories nécessaire à vos exigeance : </mat-card-title>
+    </mat-card-header>
+    <div class="contenu" fxLayout="row wrap">
+        <div fxFlex="45%" fxFlex.xs="100%">
+            <img class="icone" src="assets/fruit.png" alt="assortiment de fruit" >
+        </div>
+
+        <form [formGroup]="calculForm" (ngSubmit)="calc()" class="form-calc" fxFlex="45%" fxFlex.xs="100%">
+            <mat-form-field appearance="fill" class="input-calc">
+                <mat-label>Sexe</mat-label>
+                <select matNativeControl formControlName="sexe" required>
+                    <option value="H">Homme</option>
+                    <option value="F">Femme</option>
+                </select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="input-calc">
+                <mat-label>Age</mat-label>
+                <input type="number" required matInput placeholder="30 ans" formControlName="age">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="input-calc">
+                <mat-label>Poids</mat-label>
+                <input type="number" required matInput placeholder="70 kg" formControlName="poid">
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="input-calc">
+                <mat-label>Taille</mat-label>
+                <input type="number" required matInput placeholder="1,80 ou 1.80 pour 1m80" formControlName="taille">
+                <mat-hint align="start"><strong>L'unité est le m (ex: 1m80 = 1,80 mètre)</strong> </mat-hint>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill" class="input-calc">
+                <mat-label>Niveau d'activité</mat-label>
+                <select matNativeControl formControlName="activite" required>
+                    <option value="sedentaire">Sédentaire</option>
+                    <option value="actif">Actif</option>
+                </select>
+            </mat-form-field>
+            <br>
+            <button [disabled]="calculForm.invalid" type="submit" mat-raised-button class="btn">Calcul</button>
+        </form>
+    </div>
     <br>
     <hr>
     <h3>Resultat : {{ resultat }} kcal</h3>
@@ -50,4 +56,4 @@
         </h4>
     </mat-card>
     <br>
-</div>
+</mat-card>
