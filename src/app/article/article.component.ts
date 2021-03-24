@@ -29,7 +29,7 @@ export class ArticleComponent implements OnInit {
     this.refArticleDansBDD = this.db.getPostParKey(this.key);
     
     this.refArticleDansBDD.subscribe( value => {
-      console.warn(value);
+      //console.warn(value);
       this.article.corpsBlog = value[0];
       this.article.date = value[1];
       this.article.description = value[2];

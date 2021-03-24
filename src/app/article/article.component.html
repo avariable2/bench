@@ -1,8 +1,13 @@
-<div class="container">
-    <h2>{{ article.titre }}</h2>
-    <p>{{ article.description }}</p>
-    <img src="{{ article.image }}" alt="{{ article.titre }}">
-    {{ article.corpsBlog }}
-    <p>{{ article.genre }}</p>
-    <p>Poster le {{ article.date | date }}</p>
-</div>
+<div class="masterhead" style="background-image:url({{article.image}})"></div>
+<mat-card class="mat">
+    <mat-card-header>
+        <mat-card-title class="mat-titre">{{article.titre}}</mat-card-title>
+        <mat-card-subtitle class="sous-titre">Posté le {{ article.date | date}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content class="mat-content">
+        <div class="container">
+            <div [innerHTML]="article.corpsBlog" class="corps-article"></div>
+        </div>
+    </mat-card-content>
+    
+</mat-card>
