@@ -1,9 +1,13 @@
 <div class="container-fluid p-3">
   <h3>Les differents articles :
   </h3>
+  <mat-form-field>
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Delavier" #input>
+  </mat-form-field>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="lesPosts">
-
+      <!-- Partie qui s'occupe de la selection d'un item dans le tableau-->
       <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>
           <mat-checkbox (change)="$event ? masterToggle() : null" [checked]="selection.hasValue() && isAllSelected()"
@@ -17,17 +21,16 @@
         </td>
       </ng-container>
 
+      <!-- Ligne du tableau -->
       <ng-container matColumnDef="titre">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Titre </th>
         <td mat-cell *matCellDef="let element"> {{element.titre}} </td>
       </ng-container>
 
-
       <ng-container matColumnDef="desc">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
-        <td mat-cell *matCellDef="let element"> {{element.description  }} </td>
+        <td mat-cell *matCellDef="let element"> {{element.description | tronc:['30'] }} </td>
       </ng-container>
-
 
       <ng-container matColumnDef="corps">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Corps </th>
@@ -36,19 +39,27 @@
 
       <ng-container matColumnDef="img">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
-        <td mat-cell *matCellDef="let element"> {{element.image }} </td>
+        <td mat-cell *matCellDef="let element"> {{element.image | tronc:['20'] }} </td>
       </ng-container>
 
+      <!-- Permet d'ajouter les items en fonction des lignes-->
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="selection.toggle(row)"></tr>
 
+      <!--Ligne si aucun resultat n'est trouver lors du filtre -->
+      <tr class="mat-row" *matNoDataRow>
+        <td class="mat-cell" colspan="4">No data matching the filter "{{ input.value}}"</td>
+      </tr>
 
     </table>
-    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
-  </div>
-  <br>
-  <button mat-stroked-button color="warn" (click)="supprimer()">Supprimer</button>
 
+    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+
+  </div>
+
+  <br>
+
+  <button mat-stroked-button color="warn" (click)="supprimer()">Supprimer</button>
   <button mat-stroked-button color="primary" (click)="modifier()">Modifier</button>
 
 </div>

@@ -14,6 +14,7 @@ import { DialModifComponent } from '../mat-dialog/dial-modif/dial-modif.componen
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
 
 @Component({
   selector: 'app-espace-admin',
@@ -23,6 +24,7 @@ import { MatTableDataSource } from '@angular/material/table';
 export class EspaceAdminComponent implements OnInit {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   public lesPosts = new MatTableDataSource<Post>();
   displayedColumns: string[] = ['select', 'titre', 'desc', 'corps', 'img'];
@@ -46,6 +48,17 @@ export class EspaceAdminComponent implements OnInit {
   ngAfterViewInit() {
     // add ngAfterViewInit hook
     this.lesPosts.paginator = this.paginator;
+    this.lesPosts.sort = this.sort;
+  }
+
+  //Permet de faire un recherche dans le tableau
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.lesPosts.filter = filterValue.trim().toLowerCase();
+
+    if (this.lesPosts.paginator) {
+      this.lesPosts.paginator.firstPage();
+    }
   }
 
   /** Whether the number of selected elements matches the total number of rows. */
