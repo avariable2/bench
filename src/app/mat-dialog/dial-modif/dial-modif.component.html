@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Modification : </h2>
+<form [formGroup]="formData" (ngSubmit)="update()">
+  <div mat-dialog-content>
+
+    <mat-form-field appearance="fill">
+      <mat-label>Titre </mat-label>
+      <input matInput formControlName="titre">
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Image</mat-label>
+      <input matInput formControlName="image">
+    </mat-form-field>
+    <br>
+    <p>Le genre assigné est : <br>
+      {{ data.genre }}</p>
+    <mat-form-field appearance="fill">
+      <mat-label>Genre</mat-label>
+      <mat-select>
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="fill">
+      <mat-label>Texte du blog</mat-label>
+      <textarea matInput formControlName="corps"></textarea>
+    </mat-form-field>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-stroked-button color="primary" type="submit" cdkFocusInitial>Changer</button>
+    <button mat-stroked-button color="warn" (click)="closeDialog()">Non Merci</button>
+  </div>
+</form>

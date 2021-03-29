@@ -9,6 +9,9 @@ import {
   MAT_DIALOG_DATA,
 } from '@angular/material/dialog';
 
+import { DialSuppComponent } from '../mat-dialog/dial-supp/dial-supp.component';
+import { DialModifComponent } from '../mat-dialog/dial-modif/dial-modif.component';
+
 @Component({
   selector: 'app-espace-admin',
   templateUrl: './espace-admin.component.html',
@@ -21,7 +24,7 @@ export class EspaceAdminComponent implements OnInit {
 
   constructor(private db: BlogServiceService, private dialogue: MatDialog) {
     this.db.getPostInfo().subscribe((value) => {
-      console.log(value);
+      //console.log(value);
       this.lesPosts = value;
     });
 
@@ -46,7 +49,7 @@ export class EspaceAdminComponent implements OnInit {
   }
 
   supprimer() {
-    const estSur = this.dialogue.open(MatValid);
+    const estSur = this.dialogue.open(DialSuppComponent);
     estSur.afterClosed().subscribe((result) => {
       if (result) {
         this.selection.selected.forEach((tab) => {
@@ -58,23 +61,13 @@ export class EspaceAdminComponent implements OnInit {
       }
     });
   }
-}
 
-@Component({
-  selector: 'mat-valid',
-  templateUrl: 'mat-valid.html',
-})
-export class MatValid {
-  constructor(
-    public dialogRef: MatDialogRef<MatValid>,
-    @Inject(MAT_DIALOG_DATA) public data: boolean
-  ) {}
-
-  onNoClick(): void {
-    this.dialogRef.close(false);
-  }
-
-  onYesClick() {
-    this.dialogRef.close(true);
+  modifier() {
+    this.selection.selected.forEach((ligne) => {
+      this.dialogue.open(DialModifComponent, {
+        data: ligne,
+      });
+      console.log(ligne);
+    });
   }
 }

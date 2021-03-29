@@ -25,6 +25,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatTableModule } from '@angular/material/table';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 // Firebase services + enviorment module
 import { AngularFireModule } from '@angular/fire';
@@ -47,7 +48,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ConnexionComponent } from './connexion/connexion.component';
 import { BlockListComponent } from './block-list/block-list.component';
 import { BlockCreerComponent } from './block-creer/block-creer.component';
-import { DialogComponent } from './dialog/dialog.component';
+import { DialogComponent } from './mat-dialog/dialog/dialog.component';
 import { NavComponent } from './nav/nav.component';
 import { OutilsComponent } from './outils/outils.component';
 import { CompteurCalComponent } from './compteur-cal/compteur-cal.component';
@@ -58,7 +59,8 @@ import { CubeComponent } from './animation/cube/cube.component';
 import { ConstructionComponent } from './construction/construction.component';
 import { ArticleComponent } from './article/article.component';
 import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { DialSuppComponent } from './mat-dialog/dial-supp/dial-supp.component';
+import { DialModifComponent } from './mat-dialog/dial-modif/dial-modif.component';
 
 @NgModule({
   declarations: [
@@ -80,6 +82,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     TroncText,
     ArticleComponent,
     EspaceAdminComponent,
+    DialSuppComponent,
+    DialModifComponent,
   ],
   imports: [
     BrowserModule,

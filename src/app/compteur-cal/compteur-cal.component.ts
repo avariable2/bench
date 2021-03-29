@@ -1,16 +1,20 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, Validators, FormGroupDirective, NgForm, FormGroup } from '@angular/forms';
+import {
+  FormControl,
+  Validators,
+  FormGroupDirective,
+  NgForm,
+  FormGroup,
+} from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { DialogComponent } from '../dialog/dialog.component';
-
+import { DialogComponent } from '../mat-dialog/dialog/dialog.component';
 
 @Component({
   selector: 'app-compteur-cal',
   templateUrl: './compteur-cal.component.html',
-  styleUrls: ['./compteur-cal.component.scss']
+  styleUrls: ['./compteur-cal.component.scss'],
 })
 export class CompteurCalComponent implements OnInit {
-
   //Les objectifs journaliers sont définis grâce à la formule d'Harris et Benedict, qui selon moi est la plus précise, la voici :
   //Homme = 13,707 x Poids(kg) + 492,3 x Taille(m) - 6,673 x Age(an) + 77, 607
   //Femme = 9,740 x Poids(kg) + 172,9 x Taille(m) - 4,737 x Age(an) + 667, 051
@@ -28,10 +32,9 @@ export class CompteurCalComponent implements OnInit {
   });
   resultat: number = 0;
 
-  constructor(public dialog: MatDialog) { }
+  constructor(public dialog: MatDialog) {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   calc() {
     const sexe = this.calculForm.value.sexe;
@@ -41,31 +44,37 @@ export class CompteurCalComponent implements OnInit {
     const act = this.calculForm.value.activite;
     let nb = -0.13;
     let resultat = 0;
-    
+
     if (sexe == 'H') {
-      resultat = 259 * ( Math.pow(poid,0.48) * Math.pow(taille, 0.50) * Math.pow(age, nb) );
+      resultat =
+        259 *
+        (Math.pow(poid, 0.48) * Math.pow(taille, 0.5) * Math.pow(age, nb));
     } else {
-      resultat = 230 * ( Math.pow(poid,0.48) * Math.pow(taille, 0.50) * Math.pow(age, nb) );
+      resultat =
+        230 *
+        (Math.pow(poid, 0.48) * Math.pow(taille, 0.5) * Math.pow(age, nb));
     }
     if (act == 'actif') {
       resultat = resultat * 1.55;
     } else {
-      resultat = resultat * 1.375
+      resultat = resultat * 1.375;
     }
-    
+
     this.resultat = Math.floor(resultat);
 
-    let corpsTexte = "Il vous faut " + this.resultat + " kcal par jour. Bien sur à moduler en fonction de vos objectifs.";
-    this.openDialog("Résultat", corpsTexte); 
+    let corpsTexte =
+      'Il vous faut ' +
+      this.resultat +
+      ' kcal par jour. Bien sur à moduler en fonction de vos objectifs.';
+    this.openDialog('Résultat', corpsTexte);
   }
 
-  openDialog(t: string, c: string){
+  openDialog(t: string, c: string) {
     this.dialog.open(DialogComponent, {
       data: {
         titre: t,
         content: c,
-      }
+      },
     });
   }
-
 }
