@@ -77,16 +77,18 @@ export class EspaceAdminComponent implements OnInit {
 
   supprimer() {
     // Recupere le dialog pour traiter ce qu'il renvoie
-    const estSur = this.dialogue.open(DialSuppComponent);
-    estSur.afterClosed().subscribe((result) => {
-      if (result) {
-        this.selection.selected.forEach((tab) => {
-          if (tab.key !== undefined) {
-            this.db.supprimerPost(tab.key);
-          }
-        });
-      }
-    });
+    if (this.selection.selected.length > 0) {
+      const estSur = this.dialogue.open(DialSuppComponent);
+      estSur.afterClosed().subscribe((result) => {
+        if (result) {
+          this.selection.selected.forEach((tab) => {
+            if (tab.key !== undefined) {
+              this.db.supprimerPost(tab.key);
+            }
+          });
+        }
+      });
+    }
   }
 
   modifier() {
