@@ -4,7 +4,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { EditorModule } from '@tinymce/tinymce-angular';
-import { FlexLayoutModule } from "@angular/flex-layout";
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { LayoutModule } from '@angular/cdk/layout';
 
 // Angular Material
 import { MatToolbarModule } from '@angular/material/toolbar';
@@ -19,15 +20,15 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from '@angular/cdk/layout';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
-
+import { MatTableModule } from '@angular/material/table';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 // Firebase services + enviorment module
-import { AngularFireModule } from "@angular/fire";
-import { AngularFireAuthModule } from "@angular/fire/auth";
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireAuthModule } from '@angular/fire/auth';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFireStorageModule } from '@angular/fire/storage';
@@ -56,7 +57,8 @@ import { MediaCreerComponent } from './media-creer/media-creer.component';
 import { CubeComponent } from './animation/cube/cube.component';
 import { ConstructionComponent } from './construction/construction.component';
 import { ArticleComponent } from './article/article.component';
-
+import { EspaceAdminComponent } from './espace-admin/espace-admin.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -77,6 +79,7 @@ import { ArticleComponent } from './article/article.component';
     ConstructionComponent,
     TroncText,
     ArticleComponent,
+    EspaceAdminComponent,
   ],
   imports: [
     BrowserModule,
@@ -84,11 +87,6 @@ import { ArticleComponent } from './article/article.component';
     ReactiveFormsModule,
     AppRoutingModule,
     NgbModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatCardModule,
-    MatGridListModule,
-    MatDialogModule,
     FlexLayoutModule,
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,
@@ -98,6 +96,11 @@ import { ArticleComponent } from './article/article.component';
     EditorModule,
     BrowserAnimationsModule,
     LayoutModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatGridListModule,
+    MatDialogModule,
     MatButtonModule,
     MatSidenavModule,
     MatListModule,
@@ -107,10 +110,11 @@ import { ArticleComponent } from './article/article.component';
     MatSelectModule,
     MatProgressBarModule,
     MatSnackBarModule,
+    MatTableModule,
+    MatCheckboxModule,
+    MatPaginatorModule,
   ],
-  providers: [
-    
-  ],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

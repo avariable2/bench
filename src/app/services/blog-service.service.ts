@@ -8,25 +8,32 @@ import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 
 import { Genre } from '../interfaces/genre';
-import { Post } from "../interfaces/post";
+import { Post } from '../interfaces/post';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class BlogServiceService {
-
-  baseApiUrl = "gs://site-ben-d41dc.appspot.com/";
+  baseApiUrl = 'gs://site-ben-d41dc.appspot.com/';
 
   list: AngularFireList<Post>;
   listSnapshot: Observable<any[]>;
 
-  constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) {
+  constructor(
+    private db: AngularFireDatabase,
+    private storage: AngularFireStorage
+  ) {
     this.list = db.list('post');
-    this.listSnapshot = this.list.snapshotChanges().pipe(
-      map(changes => 
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() as {} }))
-      )
-    );
+    this.listSnapshot = this.list
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({
+            key: c.payload.key,
+            ...(c.payload.val() as {}),
+          }))
+        )
+      );
   }
 
   getPost() {
@@ -37,26 +44,32 @@ export class BlogServiceService {
     return this.listSnapshot;
   }
 
-  getPostParKey( key: string | null) {
-    // On recupere un AngularFireList de type Post pour renvoyer 
+  getPostParKey(key: string | null) {
+    // On recupere un AngularFireList de type Post pour renvoyer
     // un Observable<Post> avec valueChanges()
-    let list : AngularFireList<string> = this.db.list('post/' + key );
+    let list: AngularFireList<string> = this.db.list('post/' + key);
     return list.valueChanges();
   }
 
-  getGenre(){
-    return this.db.list('genre').snapshotChanges().pipe(
-      map(changes => 
-        changes.map(c => ({ key: c.payload.key, ...c.payload.val() as {} }))
-      )
-    );
+  getGenre() {
+    return this.db
+      .list('genre')
+      .snapshotChanges()
+      .pipe(
+        map((changes) =>
+          changes.map((c) => ({
+            key: c.payload.key,
+            ...(c.payload.val() as {}),
+          }))
+        )
+      );
   }
 
-  getGenreById(idGenre: string){
+  getGenreById(idGenre: string) {
     return this.db.list('genre/' + idGenre);
   }
 
-  ajouterGenre(genre: Genre){
+  ajouterGenre(genre: Genre) {
     return this.db.list('genre').push(genre);
   }
 
@@ -75,7 +88,7 @@ export class BlogServiceService {
   envoieImage(file: File) {
     const cheminFichiers = 'Images/Posts/' + file.name;
     const fileRef = this.storage.ref(cheminFichiers);
-    const task = this.storage.upload(cheminFichiers,file);
+    const task = this.storage.upload(cheminFichiers, file);
     // observe percentage changes
     return task;
   }
