@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { BlogServiceService } from '../services/blog-service.service';
 import { Post } from '../interfaces/post';
 import { Observable } from 'rxjs';
@@ -11,6 +11,9 @@ import {
 
 import { DialSuppComponent } from '../mat-dialog/dial-supp/dial-supp.component';
 import { DialModifComponent } from '../mat-dialog/dial-modif/dial-modif.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-espace-admin',
@@ -18,14 +21,20 @@ import { DialModifComponent } from '../mat-dialog/dial-modif/dial-modif.componen
   styleUrls: ['./espace-admin.component.scss'],
 })
 export class EspaceAdminComponent implements OnInit {
-  lesPosts: any = [];
+  @ViewChild(MatPaginator)
+  paginator!: MatPaginator;
+
+  public lesPosts = new MatTableDataSource<Post>();
   displayedColumns: string[] = ['select', 'titre', 'desc', 'corps', 'img'];
   selection: SelectionModel<Post>;
 
-  constructor(private db: BlogServiceService, private dialogue: MatDialog) {
+  constructor(
+    private db: BlogServiceService,
+    private dialogue: MatDialog,
+    private _snackBar: MatSnackBar
+  ) {
     this.db.getPostInfo().subscribe((value) => {
-      //console.log(value);
-      this.lesPosts = value;
+      this.lesPosts.data = value;
     });
 
     const initialSelection: Post[] | undefined = [];
@@ -34,10 +43,15 @@ export class EspaceAdminComponent implements OnInit {
 
   ngOnInit(): void {}
 
+  ngAfterViewInit() {
+    // add ngAfterViewInit hook
+    this.lesPosts.paginator = this.paginator;
+  }
+
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
-    const numRows = this.lesPosts.length;
+    const numRows = this.lesPosts.data.length;
     return numSelected == numRows;
   }
 
@@ -45,10 +59,11 @@ export class EspaceAdminComponent implements OnInit {
   masterToggle() {
     this.isAllSelected()
       ? this.selection.clear()
-      : this.lesPosts.forEach((row: Post) => this.selection.select(row));
+      : this.lesPosts.data.forEach((row: Post) => this.selection.select(row));
   }
 
   supprimer() {
+    // Recupere le dialog pour traiter ce qu'il renvoie
     const estSur = this.dialogue.open(DialSuppComponent);
     estSur.afterClosed().subscribe((result) => {
       if (result) {
@@ -67,6 +82,10 @@ export class EspaceAdminComponent implements OnInit {
         this.dialogue.open(DialModifComponent, {
           data: ligne,
         });
+      });
+    } else {
+      this._snackBar.open('Aie ! essaye avec un seul element', 'ça roule', {
+        duration: 5000,
       });
     }
   }
