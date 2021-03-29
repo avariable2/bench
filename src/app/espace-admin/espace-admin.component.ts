@@ -29,7 +29,7 @@ export class EspaceAdminComponent implements OnInit {
     });
 
     const initialSelection: Post[] | undefined = [];
-    this.selection = new SelectionModel<Post>(false, initialSelection);
+    this.selection = new SelectionModel<Post>(true, initialSelection);
   }
 
   ngOnInit(): void {}
@@ -53,7 +53,6 @@ export class EspaceAdminComponent implements OnInit {
     estSur.afterClosed().subscribe((result) => {
       if (result) {
         this.selection.selected.forEach((tab) => {
-          console.log(tab);
           if (tab.key !== undefined) {
             this.db.supprimerPost(tab.key);
           }
@@ -63,11 +62,12 @@ export class EspaceAdminComponent implements OnInit {
   }
 
   modifier() {
-    this.selection.selected.forEach((ligne) => {
-      this.dialogue.open(DialModifComponent, {
-        data: ligne,
+    if (this.selection.selected.length < 2) {
+      this.selection.selected.forEach((ligne) => {
+        this.dialogue.open(DialModifComponent, {
+          data: ligne,
+        });
       });
-      console.log(ligne);
-    });
+    }
   }
 }

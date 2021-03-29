@@ -41,7 +41,6 @@ export class DialModifComponent implements OnInit {
       date: this.data.date,
       genre: this.data.genre,
     };
-
     this.db.mettreAjourPost(postUpdate.key!, postUpdate);
   }
 }
