@@ -1,5 +1,10 @@
 @import '@angular/material/prebuilt-themes/indigo-pink.css';
 
+html {
+  -webkit-text-size-adjust: 100%;
+  font-family: sans-serif;
+}
+
 html,
 body {
   height: 100%;
