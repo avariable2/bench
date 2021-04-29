@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 
@@ -10,6 +10,7 @@ import { finalize } from 'rxjs/operators';
 
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DialogComponent } from '../mat-dialog/dialog/dialog.component';
+import * as firebase from 'firebase';
 
 @Component({
   selector: 'app-block-creer',
@@ -90,7 +91,7 @@ export class BlockCreerComponent implements OnInit {
       genre: this.postForm.value.categorie,
       description: this.postForm.value.description,
       corpsBlog: this.postForm.value.corps,
-      date: myDate,
+      date: firebase.default.database.ServerValue.TIMESTAMP,
     };
 
     if (this.blogService.creerPost(post)) {

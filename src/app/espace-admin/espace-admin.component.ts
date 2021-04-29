@@ -31,13 +31,11 @@ export class EspaceAdminComponent implements OnInit {
   selection: SelectionModel<Post>;
 
   constructor(
-    private db: BlogServiceService,
+    private blogService: BlogServiceService,
     private dialogue: MatDialog,
     private _snackBar: MatSnackBar
   ) {
-    this.db.getPostInfo().subscribe((value) => {
-      this.lesPosts.data = value;
-    });
+    this.blogService.lesPosts;
 
     const initialSelection: Post[] | undefined = [];
     this.selection = new SelectionModel<Post>(true, initialSelection);
@@ -79,11 +77,11 @@ export class EspaceAdminComponent implements OnInit {
     // Recupere le dialog pour traiter ce qu'il renvoie
     if (this.selection.selected.length > 0) {
       const estSur = this.dialogue.open(DialSuppComponent);
-      estSur.afterClosed().subscribe((result) => {
+      estSur.afterClosed().subscribe((result: any) => {
         if (result) {
           this.selection.selected.forEach((tab) => {
             if (tab.key !== undefined) {
-              this.db.supprimerPost(tab.key);
+              this.blogService.supprimerPost(tab.key);
             }
           });
         }

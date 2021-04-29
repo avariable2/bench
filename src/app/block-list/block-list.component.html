@@ -1,28 +1,28 @@
-
 <div class="banner">
-    <h2>Le blog pour connaitre nos astuces et conseils ! </h2>
-    <img src="assets/bench-press.png" alt="musculation avec haltere" class="image">
+  <h2>Le blog pour connaitre nos astuces et conseils ! </h2>
+  <img src="assets/bench-press.png" alt="musculation avec haltere" class="image">
 </div>
 
 <div class="container pt-3">
-    <div class="content">
-        <div fxLayout="row wrap" fxLayoutGap="2% grid">
-            <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%" *ngFor="let item of lesPosts | async">
-                <mat-card class="card" [routerLink]="['/article', item.key ]">
-                    <img mat-card-image src="{{ item.image }}" alt="{{ item.titre }}">
-                    <mat-card-header>
-                        <mat-card-title>{{ item.titre  }}</mat-card-title>
-                        <mat-card-subtitle>Posté le {{ item.date | date }}</mat-card-subtitle>
-                    </mat-card-header>
-                    <mat-card-content>
-                        {{ item.description | tronc:['45']}}
-                    </mat-card-content>
-                    <mat-card-actions>
-                        <button mat-button>LIKE</button>
-                        <button mat-button>SHARE</button>
-                    </mat-card-actions>
-                </mat-card> 
-            </div>
-        </div>
+  <div class="content">
+    <div fxLayout="row wrap" fxLayoutGap="2% grid">
+      <div fxFlex="33%" fxFlex.xs="100%" fxFlex.sm="50%" fxFlex.md="33%"
+        *ngFor="let item of blogService.lesPosts | keyvalue | slice:0:9">
+        <mat-card class="card" [routerLink]="['/article', item.key ]">
+          <img mat-card-image src="{{ item.value.image }}" alt="{{ item.value.titre }}">
+          <mat-card-header>
+            <mat-card-title>{{ item.value.titre }}</mat-card-title>
+            <mat-card-subtitle>Posté le {{ item.value.date | date }}</mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            {{ item.value.description | tronc:['45']}}
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>LIKE</button>
+            <button mat-button>SHARE</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
     </div>
+  </div>
 </div>

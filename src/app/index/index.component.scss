@@ -53,7 +53,7 @@
 }
 
 .bulle-titre {
-  padding: 2%;
+  padding: 1%;
   border-radius: 20px;
 
 }
@@ -154,6 +154,10 @@
   overflow: hidden;
   width: 100%;
   align-self: center;
+}
+
+.card:hover {
+  transform: scale(1.02);
 }
 
 // Autre

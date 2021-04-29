@@ -39,20 +39,6 @@
   </div>
 </div> -->
 
-<div class="main reveal">
-  <!-- <div class="phone-demo"></div> -->
-  <div class="content">
-    <h2 class="content-titre">Des articles détaillés pour vous aiguillez dans vos séances</h2>
-    <p class="content-corps">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas repellat dolorem vitae
-      cum iure perferendis vel eligendi reiciendis assumenda enim totam, laudantium amet placeat quia. Aliquam corporis
-      cupiditate debitis dolor!</p>
-  </div>
-  <div class="action">
-    <button mat-button color="primary" routerLink="blog-list">Accéder au Blog <mat-icon>east</mat-icon></button>
-  </div>
-</div>
-
-
 <section class="features-icons bg-light text-center reveal">
   <div class="container">
     <div class="row">
@@ -64,7 +50,7 @@
           </div>
           <h3 class="text">Des outils pratiques</h3>
           <!-- <p class="lead mb-0">This theme will look great on any device, no matter the size!</p> -->
-          <button mat-button color="accent" routerLink="media">VOIR</button>
+          <button mat-button color="accent" routerLink="outils">VOIR</button>
         </div>
       </div>
       <div class="col-lg-4">
@@ -74,7 +60,7 @@
           </div>
           <h3 class="text">Suivre des conseils sur notre blog</h3>
           <!-- <p class="lead mb-0">Featuring the latest build of the new Bootstrap 4 framework!</p> -->
-          <button mat-button color="accent" routerLink="media">VOIR</button>
+          <button mat-button color="accent" routerLink="blog-list">VOIR</button>
         </div>
       </div>
       <div class="col-lg-4">
@@ -85,6 +71,105 @@
           <h3 class="text">Une gallerie de photo pour garder la motiv</h3>
           <!-- <p class="lead mb-0">Ready to use with your own content, or customize the source files!</p> -->
           <button mat-button color="accent" routerLink="media">VOIR</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div class="main reveal">
+  <!-- <div class="phone-demo"></div> -->
+  <div class="content">
+    <h2 class="content-titre">Des articles détaillés pour vous aiguillez dans vos séances</h2>
+    <p class="content-corps">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas repellat dolorem vitae
+      cum iure perferendis vel eligendi reiciendis assumenda enim totam, laudantium amet placeat quia. Aliquam corporis
+      cupiditate debitis dolor!</p>
+  </div>
+
+</div>
+
+<!-- 3 premier articles du site -->
+<div class="container reveal">
+  <div class="row row-cols-1 row-cols-md-3 g-4">
+    <!-- Les articles recents -->
+    <div class="col" *ngFor="let unPost of blogService.lesPosts | keyvalue | slice: -3">
+      <div class="card h-100" [routerLink]="['/article', unPost.key ]">
+        <img src="{{ unPost.value.image }}" class="card-img-top" alt="Image du blog">
+        <div class="card-body">
+          <h3 class="card-title"> {{ unPost.value.titre }} </h3>
+          <p class="card-text">{{ unPost.value.description  | tronc:['45'] }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="main reveal" style="padding-top: 2%;">
+  <div class="action">
+    <button mat-button color="primary" routerLink="blog-list">Accéder au Blog <mat-icon>east</mat-icon></button>
+  </div>
+</div>
+
+<section class="section section-lg" id="about">
+  <div class="container">
+    <div class="row justify-content-center mb-5 mb-lg-7">
+      <div class="col-12 col-lg-8 text-center">
+        <h2 class="h1 mb-4">Better in every way</h2>
+        <p class="lead">Self-Service Analytics or ad hoc reporting gives users the ability to develop rapid reports,
+          empowering users to analyze their data.</p>
+      </div>
+    </div>
+    <div class="row row-grid align-items-center mb-5 mb-lg-7">
+      <div class="col-12 col-lg-5">
+        <h2 class="mb-4">A thoughtful way to pay</h2>
+        <p>Simpler App remembers your important details, so you can fill carts, not forms. And everything is encrypted
+          so you can speed safely through checkout.</p>
+        <p>Now, you can offset the carbon emissions produced by your deliveries—for free. All you have to do is check
+          out with Shop Pay, one of the first carbon-neutral way to pay.</p><a href="#"
+          class="btn btn-dark mt-3 animate-up-2">Learn More <span class="icon icon-xs ml-2"><i
+              class="fas fa-external-link-alt"></i></span></a>
+      </div>
+      <div class="col-12 col-lg-6 ml-lg-auto"><img src="/assets/media.jpg" class="w-100" alt="">
+      </div>
+    </div>
+    <div class="row row-grid align-items-center mb-5 mb-lg-7">
+      <div class="col-12 col-lg-5 order-lg-2">
+        <h2 class="mb-4">Get it. Don't sweat it.</h2>
+        <p>We track your desktop and mobile keyword rankings from any location and plot your full ranking history on a
+          handy graph.</p>
+        <p>You can set up automated ranking reports to be sent to your email address, so you’ll never forget to check
+          your ranking progress.</p><a href="#" class="btn btn-dark mt-3 animate-up-2">Learn More <span
+            class="icon icon-xs ml-2"><i class="fas fa-external-link-alt"></i></span></a>
+      </div>
+      <div class="col-12 col-lg-6 mr-lg-auto"><img src="/assets/media.jpg" class="w-100" alt="">
+      </div>
+    </div>
+
+    <!-- Card en bas de page -->
+    <div class="row">
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card border-light p-4">
+          <div class="card-body">
+            <h2 class="display-2 mb-2">98%</h2>
+            <span>Average satisfaction rating received in the past year.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card border-light p-4">
+          <div class="card-body">
+            <h2 class="display-2 mb-2">24/7</h2>
+            <span>Our support team is a quick chat or email away.</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6 col-lg-4 mb-4">
+        <div class="card border-light p-4">
+          <div class="card-body">
+            <h2 class="display-2 mb-2">220k+</h2>
+            <span>Extension installs from the two major mobile app stores.</span>
+          </div>
         </div>
       </div>
     </div>

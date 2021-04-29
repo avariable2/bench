@@ -1,23 +1,30 @@
 import { Component } from '@angular/core';
-import { NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router, RouterEvent } from '@angular/router';
+import {
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+  RouterEvent,
+} from '@angular/router';
+import { BlogServiceService } from './services/blog-service.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
   title = 'bench';
 
   public showOverlay = true;
 
-  constructor(private router: Router) {
-
+  constructor(private router: Router, blogService: BlogServiceService) {
     this.router.events.subscribe((event) => {
-      this.navigationInterceptor(event as RouterEvent)
-    })
+      this.navigationInterceptor(event as RouterEvent);
+    });
   }
-  
+
   // Shows and hides the loading spinner during RouterEvent changes
   navigationInterceptor(event: RouterEvent): void {
     if (event instanceof NavigationStart) {
