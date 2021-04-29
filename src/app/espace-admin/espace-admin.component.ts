@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { BlogServiceService } from '../services/blog-service.service';
 import { Post } from '../interfaces/post';
 import { Observable } from 'rxjs';
@@ -21,22 +21,24 @@ import { MatSort } from '@angular/material/sort';
   templateUrl: './espace-admin.component.html',
   styleUrls: ['./espace-admin.component.scss'],
 })
-export class EspaceAdminComponent implements OnInit {
+export class EspaceAdminComponent implements OnInit, OnDestroy {
   @ViewChild(MatPaginator)
   paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   public lesPosts = new MatTableDataSource<Post>();
-  displayedColumns: string[] = ['select', 'titre', 'desc', 'corps', 'img'];
+  displayedColumns: string[] = ['select', 'titre', 'desc', 'img'];
   selection: SelectionModel<Post>;
 
   constructor(
-    private blogService: BlogServiceService,
+    public blogService: BlogServiceService,
     private dialogue: MatDialog,
     private _snackBar: MatSnackBar
   ) {
-    this.blogService.lesPosts;
+    // Lorsque les valuers sont bien set
+    this.lesPosts.data = this.blogService.lesPosts.slice().reverse();
 
+    // pour les avoir trier par ordre decroissant d'ajout
     const initialSelection: Post[] | undefined = [];
     this.selection = new SelectionModel<Post>(true, initialSelection);
   }
@@ -93,6 +95,7 @@ export class EspaceAdminComponent implements OnInit {
     if (this.selection.selected.length < 2) {
       this.selection.selected.forEach((ligne) => {
         this.dialogue.open(DialModifComponent, {
+          width: '800px',
           data: ligne,
         });
       });
@@ -102,4 +105,10 @@ export class EspaceAdminComponent implements OnInit {
       });
     }
   }
+
+  refresh() {
+    this.lesPosts.data = this.blogService.lesPosts.slice().reverse();
+  }
+
+  ngOnDestroy() {}
 }

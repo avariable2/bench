@@ -1,83 +1,86 @@
 <div class="container">
 
-    <!-- Modal pour afficher les informations utiles -->
-    <p [hidden]="!doitPasserInfo">
-        <ngb-alert [type]="modalType" close="annuler();" [animation]="true" [dismissible]="true">
-            {{ modalText }}
-        </ngb-alert>
-    </p>
+  <!-- Modal pour afficher les informations utiles -->
+  <p [hidden]="!doitPasserInfo">
+    <ngb-alert [type]="modalType" close="annuler();" [animation]="true" [dismissible]="true">
+      {{ modalText }}
+    </ngb-alert>
+  </p>
 
-    <!-- Formulaire pour les posts en général -->
-    <form [formGroup]="postForm" (ngSubmit)="ajouterPost()">
-        <h2 class="display-2">Création de Blog :</h2>
-        <mat-form-field appearance="fill">
-            <mat-label>Titre :</mat-label>
-            <input formControlName="titre" type="text" matInput placeholder="Devenir aussi Strong que Ben ! (ça tourne mal)" required>
-        </mat-form-field>
+  <!-- Formulaire pour les posts en général -->
+  <form [formGroup]="postForm" (ngSubmit)="ajouterPost()">
+    <h2 class="display-2">Création de Blog :</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>Titre :</mat-label>
+      <input formControlName="titre" type="text" matInput placeholder="Devenir aussi Strong que Ben ! (ça tourne mal)"
+        required>
+    </mat-form-field>
 
-        <!-- File -->
-        <div class="mb-3">
-            <label for="formFile">Mignature du post: (Essaye de garder les memes dimension que la dernière fois)</label>
-            <br>
-            <input formControlName="mignature" type="file" (change)="onChange($event)" accept="image/jpg, image/png, image/gif" id="formFile">
-            <div> ¬> Upload à : {{ etatUpload | async }}</div>
-        </div>
+    <!-- File -->
+    <div class="mb-3">
+      <label for="formFile">Mignature du post: (Essaye de garder les memes dimension que la dernière fois)</label>
+      <br>
+      <input formControlName="mignature" type="file" (change)="onChange($event)"
+        accept="image/jpg, image/png, image/gif" id="formFile">
+      <div> ¬> Upload à : {{ etatUpload | async }}</div>
+    </div>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Catégorie</mat-label>
-            <mat-select formControlName="categorie">
-                <mat-option *ngFor="let value of lesGenres | async" value="{{ value.key }}"> {{ value.nom }} </mat-option>
-            </mat-select>
-        </mat-form-field>
-        <br/>
+    <mat-form-field appearance="fill">
+      <mat-label>Catégorie</mat-label>
+      <mat-select formControlName="categorie">
+        <mat-option *ngFor="let value of lesGenres | async" value="{{ value.key }}"> {{ value.nom }} </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br />
 
-        <a (click)="veuxAjouterGenre()" id="btnAjouter" class="btn text-light">Ajouter</a>
+    <a (click)="veuxAjouterGenre()" id="btnAjouter" class="btn text-light">Ajouter</a>
 
-        <br/>
+    <br />
 
-        <!-- Formulaire pour ajouter un Genre au artciles (une catégorie) -->
-        <div [formGroup]="genreForm" class="mb-3 row p-1" [hidden]="!veuxAjouter">
-            <label for="inputAjouterGenre" class="col-sm-3 col-form-label h4 ">Nom de la catégorie: </label>
-            <div class="col-auto">
-                <input formControlName="nom" id="inputAjouterGenre" class="form-control" type="text" [hidden]="!veuxAjouter">
-            </div>
-            <div class="col-sm-2">
-                <input formControlName="couleur" type="color" class="form-control form-control-color" title="Choose your color">
-            </div>
-            <div class="col-auto">
-                <a (click)="ajouterGenre()" class="btn btn-success">Ok</a>
-            </div>
-            <div class="col-auto">
-                <a class="btn btn-danger" (click)="veuxAjouterGenre()">X</a>
-            </div>
-        </div>
+    <!-- Formulaire pour ajouter un Genre au artciles (une catégorie) -->
+    <div [formGroup]="genreForm" class="mb-3 row p-1" [hidden]="!veuxAjouter">
+      <label for="inputAjouterGenre" class="col-sm-3 col-form-label h4 ">Nom de la catégorie: </label>
+      <div class="col-auto">
+        <input formControlName="nom" id="inputAjouterGenre" class="form-control" type="text" [hidden]="!veuxAjouter">
+      </div>
+      <div class="col-sm-2">
+        <input formControlName="couleur" type="color" class="form-control form-control-color" title="Choose your color">
+      </div>
+      <div class="col-auto">
+        <a (click)="ajouterGenre()" class="btn btn-success">Ok</a>
+      </div>
+      <div class="col-auto">
+        <a class="btn btn-danger" (click)="veuxAjouterGenre()">X</a>
+      </div>
+    </div>
 
-        <br>
+    <br>
 
-        <mat-form-field appearance="fill">
-            <mat-label>Description</mat-label>
-            <textarea formControlName="description" matInput></textarea>
-        </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Description</mat-label>
+      <textarea formControlName="description" matInput></textarea>
+    </mat-form-field>
 
-        <!-- 
+    <!-- 
                 Textarea qui fonctionne avec Tiny 
                 => https://www.tiny.cloud/docs/integrations/angular/#tinymceangularintegrationquickstartguide
             -->
-        <div class="mb-3">
-            <label>Corps du Post</label>
-            <editor formControlName="corps" apiKey="umzz1gl9pk8tam359ksjoq685xmc3j3bwc5i4sdddq635q5d" initialValue="<p>Ecris ton article BG</p>" [init]="{
+    <div class="mb-3">
+      <label>Texte du Post</label>
+      <editor formControlName="corps" apiKey="umzz1gl9pk8tam359ksjoq685xmc3j3bwc5i4sdddq635q5d"
+        initialValue="<p>Ecris ton article BG</p>" [init]="{
                         height: 500,
                         plugins: [
                             'lists link image paste help wordcount'
                         ],
                         toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help'
                     }">
-            </editor>
-        </div>
+      </editor>
+    </div>
 
-        <div class="d-grid gap-2 col-6 mx-auto mb-3">
-            <button id="btnSubmit" type="submit" [disabled]="!postForm.valid" class="btn text-light">Poster</button>
-        </div>
+    <div class="d-grid gap-2 col-6 mx-auto mb-3">
+      <button id="btnSubmit" type="submit" [disabled]="!postForm.valid" class="btn text-light">Poster</button>
+    </div>
 
-    </form>
+  </form>
 </div>

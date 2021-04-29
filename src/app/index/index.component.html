@@ -93,12 +93,12 @@
 <div class="container reveal">
   <div class="row row-cols-1 row-cols-md-3 g-4">
     <!-- Les articles recents -->
-    <div class="col" *ngFor="let unPost of blogService.lesPosts | keyvalue | slice: -3">
+    <div class="col" *ngFor="let unPost of blogService.lesPosts | slice: -3">
       <div class="card h-100" [routerLink]="['/article', unPost.key ]">
-        <img src="{{ unPost.value.image }}" class="card-img-top" alt="Image du blog">
+        <img src="{{ unPost.image }}" class="card-img-top" alt="Image du blog">
         <div class="card-body">
-          <h3 class="card-title"> {{ unPost.value.titre }} </h3>
-          <p class="card-text">{{ unPost.value.description  | tronc:['45'] }}</p>
+          <h3 class="card-title"> {{ unPost.titre }} </h3>
+          <p class="card-text">{{ unPost.description  | tronc:['45'] }}</p>
         </div>
       </div>
     </div>

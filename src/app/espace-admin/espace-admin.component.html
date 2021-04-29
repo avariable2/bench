@@ -1,7 +1,6 @@
-<div class="container">
-  <h2>Les differents articles :
-  </h2>
-  <mat-form-field>
+<div class="container pt-2">
+  <h2>Les differents articles :</h2>
+  <mat-form-field style="width: 100%;">
     <mat-label>Filter</mat-label>
     <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Delavier" #input>
   </mat-form-field>
@@ -58,8 +57,22 @@
   </div>
 
   <br>
+  <h3>
+    <mat-icon>warning</mat-icon>
+    Si il y'a des bugs clic sur ce button :
+  </h3>
 
-  <button mat-stroked-button color="warn" (click)="supprimer()">Supprimer</button>
-  <button mat-stroked-button color="primary" (click)="modifier()">Modifier</button>
+  <button mat-raised-button color="basic" matTooltip="Refresh" (click)="refresh()">
+    <mat-icon>refresh</mat-icon>
+  </button>
+  <br>
 
+</div>
+
+<div class="container pt-3 pb-2">
+  <mat-card>
+    <h2>Actions : </h2>
+    <button mat-stroked-button color="warn" (click)="supprimer()">Supprimer</button>
+    <button mat-stroked-button color="primary" (click)="modifier()">Modifier</button>
+  </mat-card>
 </div>

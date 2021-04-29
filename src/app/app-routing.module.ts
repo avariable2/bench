@@ -9,20 +9,27 @@ import { MediaComponent } from './media/media.component';
 import { AdminComponent } from './admin/admin.component';
 import { ArticleComponent } from './article/article.component';
 
-
 const routes: Routes = [
   { path: '', component: IndexComponent },
   { path: 'bench', component: IndexComponent },
   { path: 'log', component: ConnexionComponent },
   { path: 'blog-list', component: BlockListComponent },
-  { path: 'outils', component: OutilsComponent},
+  { path: 'outils', component: OutilsComponent },
   { path: 'media', component: MediaComponent },
-  { path: 'admin', component: AdminComponent, canActivate:[AngularFireAuthGuard]},
-  { path: 'article/:key', component: ArticleComponent }
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [AngularFireAuthGuard],
+  },
+  { path: 'article/:key', component: ArticleComponent },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  imports: [
+    RouterModule.forRoot(routes, {
+      onSameUrlNavigation: 'reload',
+    }),
+  ],
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

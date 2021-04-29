@@ -1,6 +1,6 @@
 <h2 mat-dialog-title>Modification : </h2>
 <form [formGroup]="formData" (ngSubmit)="update()">
-  <div mat-dialog-content>
+  <div mat-dialog-content style="width: 100%;">
 
     <mat-form-field appearance="fill">
       <mat-label>Titre </mat-label>
@@ -27,14 +27,22 @@
       <textarea matInput formControlName="description"></textarea>
     </mat-form-field>
     <br>
-    <mat-form-field appearance="fill">
-      <mat-label>Texte du blog</mat-label>
-      <textarea matInput formControlName="corps"></textarea>
-    </mat-form-field>
+
+    <p>Texte du corps</p>
+    <editor formControlName="corps" apiKey="umzz1gl9pk8tam359ksjoq685xmc3j3bwc5i4sdddq635q5d"
+      initialValue="{{this.data.corpsBlog}}" [init]="{
+                        height: 500,
+                        plugins: [
+                            'lists link image paste help wordcount'
+                        ],
+                        toolbar: 'undo redo | formatselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | help'
+                    }">
+    </editor>
+
 
   </div>
   <div mat-dialog-actions>
     <button mat-stroked-button color="primary" type="submit" cdkFocusInitial>Changer</button>
-    <button mat-stroked-button color="warn" (click)="closeDialog()">Non Merci</button>
+    <button mat-stroked-button color="warn" (click)="closeDialog()">Annuler</button>
   </div>
 </form>

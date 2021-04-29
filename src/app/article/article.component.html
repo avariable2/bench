@@ -1,12 +1,12 @@
-<div class="masterhead" style="background-image:url({{article.image}})"></div>
+<div class="masterhead" style="background-image:url({{this.blogService.lesPosts[key].image}})"></div>
 <mat-card class="mat">
 
-  <h1 class="mat-titre">{{article.titre}}</h1>
-  <span class="sous-titre"> - Posté le {{ article.date | date}}</span>
+  <h1 class="mat-titre">{{this.blogService.lesPosts[key].titre}}</h1>
+  <span class="sous-titre"> - Posté le {{ this.blogService.lesPosts[key].date | date}}</span>
 
   <mat-card-content class="mat-content">
     <div class="container">
-      <div [innerHTML]="corpsArticle" class="corps-article"></div>
+      <div [innerHTML]="this.blogService.lesPosts[key].corpsBlog" class="corps-article"></div>
     </div>
   </mat-card-content>
 

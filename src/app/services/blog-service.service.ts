@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { finalize } from 'rxjs/operators';
 import { map } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -15,22 +15,18 @@ import { Post } from '../interfaces/post';
 })
 export class BlogServiceService {
   list: AngularFireList<Post>;
-  //listSnapshot: Observable<any[]>;
-  lesPosts: { [key: string]: Post } = {};
+
+  // variables pour recuperer les posts
+  lesPosts: Array<Post> = [];
+
+  // variable pour savoir si les données sont pretes
+  estPret = new Subject<boolean>();
 
   constructor(
     private afdService: AngularFireDatabase,
     private storage: AngularFireStorage
   ) {
     this.list = afdService.list('post');
-    /*this.listSnapshot = this.list.snapshotChanges().pipe(
-      map((changes) =>
-        changes.map((c) => ({
-          key: c.payload.key,
-          ...(c.payload.val() as {}),
-        }))
-      )
-    ); */
     this.getPostAux();
   }
 
@@ -42,22 +38,39 @@ export class BlogServiceService {
       .list('post', (ref) => ref.orderByChild('date'))
       .query.once('value')
       .then((value) => {
+        // On effectue le traitement en amont
         value.forEach((unPost) => {
           let clef = unPost.key;
-          if (clef) this.lesPosts[clef] = unPost.val();
+          if (clef) {
+            let post = unPost.val();
+            post.key = unPost.key;
+            this.lesPosts.push(post);
+          }
         });
+        // ET on confirme que les données on été set
+        this.estPret.next(true);
         console.log(this.lesPosts);
       });
     //, (ref) => ref.child('prive').equalTo(false)
   }
 
+  getPostParClef(clef: string | null) {
+    for (let index = 0; index < this.lesPosts.length; index++) {
+      const element = this.lesPosts[index];
+      if (element.key == clef) {
+        return element;
+      }
+    }
+    return false;
+  }
+
+  getPostParIndex(index: number): Post {
+    return this.lesPosts[index];
+  }
+
   getPost() {
     return this.list.valueChanges();
   }
-
-  /*getPostInfo() {
-    return this.listSnapshot;
-  }*/
 
   getPostParKey(key: string | null) {
     // On recupere un AngularFireList de type Post pour renvoyer
