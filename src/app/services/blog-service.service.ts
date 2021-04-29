@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 import { AngularFireStorage } from '@angular/fire/storage';
 
-import { Observable, Subject } from 'rxjs';
-import { finalize } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+
 import { map } from 'rxjs/operators';
-import { HttpClient } from '@angular/common/http';
 
 import { Genre } from '../interfaces/genre';
 import { Post } from '../interfaces/post';
