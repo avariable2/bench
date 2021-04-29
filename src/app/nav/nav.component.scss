@@ -50,6 +50,11 @@ a {
   background-color: transparent;
 }
 
+
+.main {
+  min-height: calc(100% - 15rem);
+}
+
 @media screen and (max-width: 600px) {
   .menu {
     display: none;
