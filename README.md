@@ -1,30 +1,126 @@
-# Bench
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.1.0.
+## Bench
 
-# Ressources
-https://www.flaticon.com/packs/fitness-and-healthy-5?word=fitness
+**Bench** is a lightweight full-stack web application built with Angular and Firebase, designed to help fitness enthusiasts publish workout articles and track daily calorie intake. It showcases modern front-end development practices, clean architecture, and seamless backend integration.
 
-## Development server
+---
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- **Article Management**  
+  - Create, edit, and delete workout and nutrition articles  
+  - Rich-text content with image support for enhanced readability  
+- **Calorie Tracker**  
+  - Log meals with ingredient-level calorie data  
+  - Real-time calculation of total daily calories  
+- **Live Reload**  
+  - Automatic rebuild and reload on source changes via `ng serve`  
+- **Testing & CI/CD**  
+  - Unit tests with Karma & Jasmine  
+  - End-to-end tests with Protractor  
+  - GitHub Actions pipeline for build, test, and Firebase deployment  
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+---
 
-## Build
+## Technology Stack
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+- **Framework**: Angular (Components, Services, Routing)  
+- **Language**: TypeScript, HTML5, SCSS  
+- **Backend**: Firebase Authentication, Firestore database, Hosting  
+- **Testing**: Karma & Jasmine (unit), Protractor (e2e)  
+- **CI/CD**: GitHub Actions + Firebase CLI  
+- **Design Assets**: Fitness-themed icons from Flaticon  
 
-## Running unit tests
+---
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Installation
 
-## Running end-to-end tests
+1. **Clone the repository**  
+   ```bash
+   git clone https://github.com/avariable2/bench.git
+   cd bench
+    ```
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+2. **Install dependencies**
 
-## Further help
+   ```bash
+   npm install
+   ```
+3. **Run development server**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+   ```bash
+   ng serve
+   ```
+
+   Open your browser at `http://localhost:4200`; the app rebuilds on each file change.
+
+---
+
+## Production Build & Deployment
+
+* **Build for production**
+
+  ```bash
+  ng build --prod
+  ```
+
+  Artifacts are output to the `dist/bench` directory.
+* **Deploy to Firebase**
+  Ensure you have logged in via `firebase login` and initialized your project. Then:
+
+  ```bash
+  firebase deploy
+  ```
+
+---
+
+## Project Structure
+
+```
+bench/
+├── .github/           # GitHub Actions workflows
+├── src/
+│   ├── app/           # Angular modules, components, services
+│   ├── assets/        # Images, icons
+│   └── environments/  # Environment-specific settings
+├── e2e/               # End-to-end tests
+├── angular.json       # Angular CLI configuration
+└── package.json       # npm scripts and dependencies
+```
+
+---
+
+## How It Works
+
+1. **Front-end**
+
+   * Modular architecture: feature modules for blog and tracker
+   * Reactive forms and Angular Services for API interactions
+2. **Back-end**
+
+   * Firebase Firestore stores articles and meal logs
+   * Firebase Authentication secures user access
+3. **Deployment**
+
+   * Continuous integration builds and tests on each push
+   * Automatic deployment to Firebase Hosting on merge to `main`
+
+---
+
+## Getting Started
+
+Clone, install, and serve as above, then explore:
+
+* **`/articles`** to manage posts
+* **`/tracker`** to log meals and view calorie totals
+
+Dive into the `src/app` folder to review component structure, service patterns, and Firestore integration. Feedback and contributions are welcome!
+
+---
+
+## License
+
+MIT License — see [LICENSE](LICENSE) for details.
+
+```
+```
